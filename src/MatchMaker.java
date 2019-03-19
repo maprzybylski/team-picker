@@ -58,12 +58,10 @@ public void getPairs(ArrayList<Player> players)
 	if(isRematch())
 	{
 	int howManyMatches=howManyTeams*((howManyTeams-1)*2);
-	System.out.println(howManyMatches);
 	}
 	else
 	{
 		int howManyMatches=howManyTeams*(howManyTeams-1);
-		System.out.println(howManyMatches);
 	}
 	ArrayList<Player> playersCopy=players;
 	Random rand=new Random();

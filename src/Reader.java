@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ public void read() throws IOException
 {
 	//String file_location=System.getProperty("user.dir")+"/teams.txt";
 	
-	FileReader file=new FileReader(System.getProperty("user.dir")+"//src//teams.txt");
+	FileReader file=new FileReader(System.getProperty("user.dir")+"//teams.txt");
 	//FileReader file=new FileReader(file_location);
 	if(file.equals(null))
 		System.out.println("file error");
@@ -29,8 +28,6 @@ teams.add(temp);
 }
 reader.close();
 file.close();
-
-//System.out.println("successed");
 }
 
 

@@ -1,19 +1,20 @@
 import java.awt.HeadlessException;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 public class Interface extends JFrame implements ActionListener{
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 JButton click=new JButton("click to do the job");
 JLabel pl=new JLabel("Players:");
 //TextField p=new TextField();
@@ -112,7 +113,6 @@ try {
 	e.printStackTrace();
 }
 }
-maker.getPairs(players);
 Saver saver=new Saver();
 saver.save(players);
 	}

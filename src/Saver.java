@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,7 +6,7 @@ import java.util.ArrayList;
 public class Saver {
 	public void save(ArrayList<Player> array) throws IOException  
 	{
-		FileWriter file=new FileWriter(System.getProperty("user.dir")+"//src//result.txt");
+		FileWriter file=new FileWriter(System.getProperty("user.dir")+"//result.txt");
 		//FileReader file=new FileReader(file_location);
 		if(file.equals(null))
 			System.out.println("file error");
