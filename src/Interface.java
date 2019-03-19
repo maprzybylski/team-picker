@@ -66,7 +66,8 @@ public void actionPerformed(ActionEvent event){
 	if(source==click)
 	{
 try {
-	doSomething();
+	setMaker();
+	dispose();
 } catch (IOException e) {
 	// TODO Auto-generated catch block
 	e.printStackTrace();
@@ -75,7 +76,7 @@ try {
 }
 	// TODO Auto-generated method stub
 
-public void doSomething() throws IOException
+public void setMaker() throws IOException
 {
 	Reader reader=new Reader();
 	reader.read();
@@ -87,6 +88,8 @@ public void doSomething() throws IOException
 	
 	re=(String) r.getSelectedItem();
 
+	if((Integer.parseInt(pl)*Integer.parseInt(te))<26)
+	{
 	maker.setPlayers(Integer.parseInt(pl));
 	maker.setTeamsPerPlayer(Integer.parseInt(te));
 	switch(re) {
@@ -109,20 +112,19 @@ try {
 	e.printStackTrace();
 }
 }
-
-for (int i=0;i<maker.getPlayers();i++)
-{
-System.out.println(players.get(i).name);
-System.out.println();
-for(int j=0;j<players.get(i).teams.size();j++)
-{
-System.out.println(players.get(i).teams.get(j));
-}
-System.out.println("-----------------------");
-}	
+maker.getPairs(players);
+Saver saver=new Saver();
+saver.save(players);
+	}
+	else
+	{
+		JOptionPane.showMessageDialog(this, "Too many players&teams, MAX 25");
+		dispose();
+	}
 }
 public static void main(String[] args) throws IOException
 {
+	
 	Interface in=new Interface();
 	in.setVisible(true);
 }

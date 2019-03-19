@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -7,10 +6,11 @@ private int players;
 private int teamsPerPlayer;
 private boolean rematch;
 ArrayList<String> randingArray;
-int howMany=26;
+int howMany;
 public MatchMaker(ArrayList<String> readed)
 {
 	randingArray=readed;
+	howMany=randingArray.size();
 }
 public int getPlayers() {
 	return players;
@@ -39,7 +39,7 @@ public ArrayList<String> rand() {
 	
 	Random rand;
 	int counter=teamsPerPlayer;
-	while(counter!=0)
+	while(counter>0)
 	{
 		rand=new Random();
 	int randomValue=rand.nextInt(howMany);
@@ -51,4 +51,34 @@ public ArrayList<String> rand() {
 	}
 	return resultTeams;
 }
+
+public void getPairs(ArrayList<Player> players)
+{
+	int howManyTeams=getPlayers()*getTeamsPerPlayer();
+	if(isRematch())
+	{
+	int howManyMatches=howManyTeams*((howManyTeams-1)*2);
+	System.out.println(howManyMatches);
+	}
+	else
+	{
+		int howManyMatches=howManyTeams*(howManyTeams-1);
+		System.out.println(howManyMatches);
+	}
+	ArrayList<Player> playersCopy=players;
+	Random rand=new Random();
+	int randomNumber=rand.nextInt(playersCopy.size());
+	rand=new Random();
+	int randomNumber2=rand.nextInt(playersCopy.get(randomNumber).teams.size());
+	System.out.println(playersCopy.get(randomNumber).teams.get(randomNumber2));
+	//playersCopy.remove(randomNumber);
+	
+	rand=new Random();
+	randomNumber=rand.nextInt(playersCopy.size());
+	rand=new Random();
+	randomNumber2=rand.nextInt(playersCopy.get(randomNumber).teams.size());
+	System.out.println(playersCopy.get(randomNumber).teams.get(randomNumber2));
+	playersCopy.remove(randomNumber);
+}
+
 }
