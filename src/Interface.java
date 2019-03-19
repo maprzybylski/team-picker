@@ -59,81 +59,68 @@ p.setEditable(true);
 	click.setBounds(100, 280, 200, 20);
 	add(click);
 	click.addActionListener(this);
-//	Reader reader=new Reader();
-//	reader.read();
 }
 @Override
-public void actionPerformed(ActionEvent event) {
+public void actionPerformed(ActionEvent event){
 	Object source=event.getSource();
 	if(source==click)
 	{
-		MatchMaker maker=new MatchMaker();
-		String pl,te,re;
-		pl=(String) p.getSelectedItem();
-		
-		te=(String) t.getSelectedItem();
-		
-		re=(String) r.getSelectedItem();
+try {
+	doSomething();
+} catch (IOException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+	}
+}
+	// TODO Auto-generated method stub
+
+public void doSomething() throws IOException
+{
+	Reader reader=new Reader();
+	reader.read();
+	MatchMaker maker=new MatchMaker(reader.getTeams());
+	String pl,te,re;
+	pl=(String) p.getSelectedItem();
 	
-		maker.setPlayers(Integer.parseInt(pl));
-		maker.setTeamsPerPlayer(Integer.parseInt(te));
-		switch(re) {
-		case "yes":
-			maker.setRematch(true);
+	te=(String) t.getSelectedItem();
+	
+	re=(String) r.getSelectedItem();
+
+	maker.setPlayers(Integer.parseInt(pl));
+	maker.setTeamsPerPlayer(Integer.parseInt(te));
+	switch(re) {
+	case "yes":
+		maker.setRematch(true);
+		break;
+	case "no":
+		maker.setRematch(false);
+		default:
 			break;
-		case "no":
-			maker.setRematch(false);
-			default:
-				break;
-		
-		}
+	
+	}
 ArrayList<Player> players=new ArrayList<Player>();
 for (int i=0;i<maker.getPlayers();i++)
 {
-	try {
-		players.add(new Player(JOptionPane.showInputDialog("What is your name?"),maker.rand()));
-	} catch (HeadlessException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+try {
+	players.add(new Player(JOptionPane.showInputDialog("What is your name?"),maker.rand()));
+} catch (HeadlessException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
 }
 
-for(Player pla:players)
+for (int i=0;i<maker.getPlayers();i++)
 {
-	for(int i=0;i<pla.teams.size();i++)
-			{
-System.out.println(pla.teams.get(i));
-			}
+System.out.println(players.get(i).name);
+System.out.println();
+for(int j=0;j<players.get(i).teams.size();j++)
+{
+System.out.println(players.get(i).teams.get(j));
 }
-//List<String> someList = new ArrayList<String>();
-////add "monkey", "donkey", "skeleton key" to someList
-//for (String item : someList) {
-// System.out.println(item);
-//}
-
-
-	}
-//	System.out.println(maker.getPlayers());
-//	System.out.println(maker.getTeamsPerPlayer());
-//	System.out.println(maker.isRematch());
-	
-//	try {
-////		maker.rand();
-//	} catch (IOException e) {
-//		// TODO Auto-generated catch block
-//		e.printStackTrace();
-//	}
-//	}	
-//		maker.setRematch(Integer.parse);
-//String temp=p.getText();
-		
-		//maker.setPlayers(Integer.parseInt(temp));
-//		System.out.println(maker.getPlayers());
+System.out.println("-----------------------");
+}	
 }
-	// TODO Auto-generated method stub
 public static void main(String[] args) throws IOException
 {
 	Interface in=new Interface();

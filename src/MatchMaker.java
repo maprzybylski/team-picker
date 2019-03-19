@@ -6,7 +6,12 @@ public class MatchMaker {
 private int players;
 private int teamsPerPlayer;
 private boolean rematch;
-
+ArrayList<String> randingArray;
+int howMany=26;
+public MatchMaker(ArrayList<String> readed)
+{
+	randingArray=readed;
+}
 public int getPlayers() {
 	return players;
 }
@@ -28,11 +33,8 @@ public void setRematch(boolean rematch) {
 	this.rematch = rematch;
 }
 
-public ArrayList<String> rand() throws IOException {
-	Reader reader=new Reader();
-	reader.read();
+public ArrayList<String> rand() {
 	
-	ArrayList<String> randingArray=reader.getTeams();
 	ArrayList<String> resultTeams=new ArrayList<String>();
 	
 	Random rand;
@@ -40,13 +42,12 @@ public ArrayList<String> rand() throws IOException {
 	while(counter!=0)
 	{
 		rand=new Random();
-	int randomValue=rand.nextInt(26);
-	if(randingArray.get(randomValue)!=null)
-	{
+	int randomValue=rand.nextInt(howMany);
+	
 	resultTeams.add(randingArray.get(randomValue));
 	randingArray.remove(randomValue);
 	counter--;
-	}
+	howMany--;
 	}
 	return resultTeams;
 }
