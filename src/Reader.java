@@ -24,15 +24,13 @@ if(reader.equals(null))
 String temp="";
 while((temp=reader.readLine())!=null)
 {
-//	System.out.println(temp);
 teams.add(temp);
 
 }
 reader.close();
 file.close();
-//	System.out.println(teams.size());
 
-System.out.println("successed");
+//System.out.println("successed");
 }
 
 
