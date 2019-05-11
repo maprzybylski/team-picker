@@ -4,7 +4,6 @@ import java.util.Random;
 public class MatchMaker {
 private int players;
 private int teamsPerPlayer;
-private boolean rematch;
 ArrayList<String> randingArray;
 int howMany;
 public MatchMaker(ArrayList<String> readed)
@@ -24,13 +23,6 @@ public int getTeamsPerPlayer() {
 }
 public void setTeamsPerPlayer(int teamsPerPlayer) {
 	this.teamsPerPlayer = teamsPerPlayer;
-}
-
-public boolean isRematch() {
-	return rematch;
-}
-public void setRematch(boolean rematch) {
-	this.rematch = rematch;
 }
 
 public ArrayList<String> rand() {
@@ -55,14 +47,6 @@ public ArrayList<String> rand() {
 public void getPairs(ArrayList<Player> players)
 {
 	int howManyTeams=getPlayers()*getTeamsPerPlayer();
-	if(isRematch())
-	{
-	int howManyMatches=howManyTeams*((howManyTeams-1)*2);
-	}
-	else
-	{
-		int howManyMatches=howManyTeams*(howManyTeams-1);
-	}
 	ArrayList<Player> playersCopy=players;
 	Random rand=new Random();
 	int randomNumber=rand.nextInt(playersCopy.size());

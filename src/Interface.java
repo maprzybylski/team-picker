@@ -15,7 +15,7 @@ public class Interface extends JFrame implements ActionListener{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-JButton click=new JButton("click to do the job");
+JButton click=new JButton("START");
 JLabel pl=new JLabel("Players:");
 //TextField p=new TextField();
 String[] optionsp= {"1","2","3","4"};
@@ -26,10 +26,10 @@ JLabel tl=new JLabel("Teams per Player:");
 String[] optionst= {"1","2","3"};
 JComboBox<String> t=new JComboBox<String>(optionst);
 
-JLabel rl=new JLabel("Rematch?");
-//TextField r=new TextField();
+JLabel sv =new JLabel("Save to text file?");
 String[] options= {"yes","no"};
-JComboBox<String> r=new JComboBox<String>(options);
+JComboBox<String> s =new JComboBox<String>(options);
+boolean ifSave=false;
 public Interface() throws IOException
 {
 	setSize(640,480);
@@ -50,12 +50,12 @@ p.setEditable(true);
 		add(tl);
 		add(t);
 		
-		rl.setBounds(100, 220, 100, 20);
+		sv.setBounds(100, 220, 100, 20);
 
-		r.setBounds(100, 250, 100, 20);
-		r.setEditable(true);
-			add(rl);
-			add(r);
+		s.setBounds(100, 250, 100, 20);
+		s.setEditable(true);
+			add(sv);
+			add(s);
 //	p.addActionListener(this);
 	click.setBounds(100, 280, 200, 20);
 	add(click);
@@ -82,23 +82,24 @@ public void setMaker() throws IOException
 	Reader reader=new Reader();
 	reader.read();
 	MatchMaker maker=new MatchMaker(reader.getTeams());
-	String pl,te,re;
+	String pl,te,sav;
 	pl=(String) p.getSelectedItem();
 	
 	te=(String) t.getSelectedItem();
 	
-	re=(String) r.getSelectedItem();
+	sav=(String) s.getSelectedItem();
 
 	if((Integer.parseInt(pl)*Integer.parseInt(te))<26)
 	{
 	maker.setPlayers(Integer.parseInt(pl));
 	maker.setTeamsPerPlayer(Integer.parseInt(te));
-	switch(re) {
+	switch(sav) {
 	case "yes":
-		maker.setRematch(true);
+		ifSave=true;
 		break;
 	case "no":
-		maker.setRematch(false);
+		ifSave=false;
+		break;
 		default:
 			break;
 	
@@ -113,8 +114,29 @@ try {
 	e.printStackTrace();
 }
 }
-Saver saver=new Saver();
-saver.save(players);
+
+		for(int i=0;i<players.size();i++)
+		{
+			String playerTeams="";
+			for(int j=0;j<players.get(i).teams.size();j++) {
+				playerTeams+=players.get(i).teams.get(j);
+
+				if(players.get(i).teams.size()>1) {
+					if(players.get(i).teams.size()>j+1)
+						playerTeams += ", ";
+				}
+				if(players.get(i).teams.size()==1||players.get(i).teams.size()-1==j)
+				{
+					playerTeams+=".";
+				}
+			}
+			JOptionPane.showMessageDialog(this, players.get(i).name+": "+playerTeams);
+		}
+
+if(ifSave) {
+	Saver saver = new Saver();
+	saver.save(players);
+}
 	}
 	else
 	{
