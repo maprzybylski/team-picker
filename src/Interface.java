@@ -29,6 +29,11 @@ JComboBox<String> t=new JComboBox<String>(optionst);
 JLabel sv =new JLabel("Save to text file?");
 String[] options= {"yes","no"};
 JComboBox<String> s =new JComboBox<String>(options);
+
+	JLabel of=new JLabel("Load from teams.txt?");
+	String[] optionsof= {"yes","no"};
+	JComboBox<String> ofCombo=new JComboBox<String>(optionsof);
+
 boolean ifSave=false;
 public Interface() throws IOException
 {
@@ -40,9 +45,12 @@ public Interface() throws IOException
 
 p.setBounds(100, 130, 100, 20);
 p.setEditable(true);
+
+of.setBounds(100,280,150,20);
+
 	add(pl);
 	add(p);
-	
+	add(of);
 	tl.setBounds(100, 160, 150, 20);
 
 	t.setBounds(100, 190, 100, 20);
@@ -53,11 +61,13 @@ p.setEditable(true);
 		sv.setBounds(100, 220, 100, 20);
 
 		s.setBounds(100, 250, 100, 20);
+		ofCombo.setBounds(100,310,100,20);
 		s.setEditable(true);
 			add(sv);
 			add(s);
-//	p.addActionListener(this);
-	click.setBounds(100, 280, 200, 20);
+			add(ofCombo);
+
+	click.setBounds(100, 370, 200, 20);
 	add(click);
 	click.addActionListener(this);
 }
@@ -67,7 +77,13 @@ public void actionPerformed(ActionEvent event){
 	if(source==click)
 	{
 try {
-	setMaker();
+	if ((String) ofCombo.getSelectedItem() == "yes") {
+		setMaker(true);
+	}
+else
+		{
+			setMaker(false);
+		}
 	dispose();
 } catch (IOException e) {
 	// TODO Auto-generated catch block
@@ -77,10 +93,15 @@ try {
 }
 	// TODO Auto-generated method stub
 
-public void setMaker() throws IOException
+public void setMaker(boolean readFile) throws IOException
 {
 	Reader reader=new Reader();
-	reader.read();
+	if(readFile){
+		reader.readFile();
+	}
+	else {
+		reader.read();
+	}
 	MatchMaker maker=new MatchMaker(reader.getTeams());
 	String pl,te,sav;
 	pl=(String) p.getSelectedItem();
