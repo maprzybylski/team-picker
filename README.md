@@ -7,7 +7,7 @@ https://drive.google.com/file/d/1rY2XlsepHEOYuULVC-x1_q6dSmX3q6xG/view?usp=shari
 ### virus total scan
 https://www.virustotal.com/#/file/fe1d055aca4505df7081a75e02a520842ba5df28f04d5a6b49c1f33191e14d1a/detection
 
-### loading .txt file with own teams
+### v.02 +++loading .txt file with own teams
 The file must be located where the .jar file is, and must be named "teams.txt".
 ### default database looks like this
 https://drive.google.com/file/d/1QWJhSMzpCROQ5ngjAhp5X47Q2dk7vskN/view?usp=sharing
